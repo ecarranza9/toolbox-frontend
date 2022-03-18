@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar Component should match snapshot and styles 1`] = `
+<DocumentFragment>
+  <nav
+    class="navbar navbar-expand navbar-dark bg-dark"
+  >
+    <div
+      class="container"
+    >
+      <span
+        class="navbar-brand"
+      >
+        React Test APP
+      </span>
+    </div>
+  </nav>
+</DocumentFragment>
+`;

@@ -26,14 +26,16 @@ export const getFilesList = createAsyncThunk(
   }
 );
 
+export const initialState = {
+  files: [],
+  list: [],
+  fileName: undefined,
+  isFetching: false
+}
+
 export const filesSlice = createSlice({
   name: 'files',
-  initialState: {
-    files: [],
-    list: [],
-    fileName: undefined,
-    isFetching: false
-  },
+  initialState,
   reducers: {
     setFileName: (state, action) => {
       state.fileName = action.payload;

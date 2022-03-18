@@ -1,6 +1,6 @@
 export const formattedData = (data) => {
   let newArr = [];
-  const newData = data.forEach(item => {
+  data && data.forEach(item => {
     item.lines.forEach(line => {
       newArr.push({
         ...line,
