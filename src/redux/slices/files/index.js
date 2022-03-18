@@ -59,10 +59,9 @@ export const filesSlice = createSlice({
         state.isFetching = false;
       }),
       builder.addCase(getFilesList.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.isFetching = false;
         state.list = action.payload.files;
-      })
+      });
   }
 });
 
