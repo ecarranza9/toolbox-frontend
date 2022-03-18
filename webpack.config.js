@@ -2,6 +2,7 @@ const path = require('path');
 const htmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devtool: 'inline-source-map',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -27,13 +28,13 @@ module.exports = {
   },
   plugins: [
     new htmlWebPackPlugin({
-        template: path.join(__dirname, './src/index.html'),
+      template: path.join(__dirname, './src/index.html'),
     })
   ],
   devServer: {
-    static : {
-        directory : path.join(__dirname, 'dist')
-      },
-      port: 3000
+    static: {
+      directory: path.join(__dirname, 'dist')
+    },
+    port: 3000
   },
 };
