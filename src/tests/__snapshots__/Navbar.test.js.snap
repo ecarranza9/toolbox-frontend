@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Navbar Component should match snapshot and styles 1`] = `
-<DocumentFragment>
+exports[`NavBar Component should match snapshot 1`] = `
+<div
+  data-testid="navbar"
+>
   <nav
     class="navbar navbar-expand navbar-dark bg-dark"
   >
@@ -15,5 +17,5 @@ exports[`Navbar Component should match snapshot and styles 1`] = `
       </span>
     </div>
   </nav>
-</DocumentFragment>
+</div>
 `;

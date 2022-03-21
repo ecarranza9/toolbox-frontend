@@ -1,10 +1,16 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import NavBar from '../components/layout/Navbar';
 
-describe('Navbar Component', () => {
-  const { asFragment } = render(<NavBar />);
-  test('should match snapshot and styles', () => {
-    expect(asFragment(<NavBar />)).toMatchSnapshot();
-  })
-});
+describe('NavBar Component', () => {
+  test('should match title', () => {
+    render(<NavBar />);
+    expect(screen.getByText('React Test APP')).toBeInTheDocument()
+  });
+
+  test('should match snapshot', async () => {
+    render(<NavBar />);
+    const nav = await screen.getByTestId('navbar');
+    expect(nav).toMatchSnapshot();
+  });
+})

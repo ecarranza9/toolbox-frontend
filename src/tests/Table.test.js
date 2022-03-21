@@ -1,9 +1,19 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, screen } from '@testing-library/react';
 import Table from '../components/table/Table';
 import { Provider } from 'react-redux';
-import filesReducer from '../redux/slices/files';
 import { configureStore } from '@reduxjs/toolkit';
+import configureMockStore from 'redux-mock-store';
+import { filesMockList } from './mocks';
+import filesReducer, { getFilesList } from '../redux/slices/files';
+import thunk from 'redux-thunk';
+
+const middlewares = [thunk];
+
+// initialize mockStore which is only the configureStore method which take middlesware as its parameters
+const mockStore = configureMockStore(middlewares);
+
+const storeMocked = mockStore({});
 
 const renderWithRedux = (
   component,
@@ -19,11 +29,27 @@ const renderWithRedux = (
   }
 }
 
+// mock fetch call
+global.fetch = jest.fn(() => Promise.resolve({
+  json: () => Promise.resolve(filesMockList)
+}));
+
 afterEach(cleanup);
 
 describe('Table Component', () => {
-  const { asFragment } = renderWithRedux(<Table />)
+
+  beforeAll(() => {
+    storeMocked.clearActions();
+  })
+
+  test('should get files list', () => {
+    storeMocked.dispatch(getFilesList()).then((action) => {
+      expect(action.payload.files).toEqual(filesMockList.files)
+    });
+  })
+
   test('should match snapshot and styles', () => {
+    const { asFragment } = renderWithRedux(<Table />);
     expect(asFragment(<Table />)).toMatchSnapshot();
   });
 });

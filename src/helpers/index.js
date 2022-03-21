@@ -1,7 +1,7 @@
 export const formattedData = (data) => {
   let newArr = [];
   data && data.forEach(item => {
-    item.lines.forEach(line => {
+    item && item.lines && item.lines.forEach(line => {
       newArr.push({
         ...line,
         file: item.file

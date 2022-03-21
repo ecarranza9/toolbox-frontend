@@ -13,7 +13,6 @@ const CustomTable = () => {
   const dataToTable = formattedData(files);
 
   const handleSelect = (e) => {
-    console.log(e.target.value);
     dispatch(setFileName(e.target.value));
   };
 
@@ -32,7 +31,11 @@ const CustomTable = () => {
 
   return (
     <Container style={{ marginTop: 20 }}>
-      <Form.Select aria-label="Select File" style={{ marginBottom: 30 }} onChange={handleSelect}>
+      <Form.Select
+        aria-label="Select File"
+        data-testid="select-files"
+        style={{ marginBottom: 30 }} onChange={handleSelect}
+      >
         <option value='all'>All files data</option>
         {list && list.length > 0 && list.map(file => (
           <option value={file}>{file}</option>
@@ -46,28 +49,30 @@ const CustomTable = () => {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         )
-          : (
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>FileName</th>
-                  <th>Text</th>
-                  <th>Number</th>
-                  <th>Hex</th>
-                </tr>
-              </thead>
-              <tbody>
-                {dataToTable ? dataToTable.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.file}</td>
-                    <td>{item.text}</td>
-                    <td>{item.number}</td>
-                    <td>{item.hex}</td>
+          : dataToTable.length > 0 ? (
+            <div data-testid="table">
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>FileName</th>
+                    <th>Text</th>
+                    <th>Number</th>
+                    <th>Hex</th>
                   </tr>
-                )) : <span> Este archivo no tiene datos </span>}
-              </tbody>
-            </Table>
-          )}
+                </thead>
+                <tbody>
+                  {dataToTable && dataToTable.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.file}</td>
+                      <td>{item.text}</td>
+                      <td>{item.number}</td>
+                      <td>{item.hex}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+          ) : <span> Este archivo no tiene datos validos </span>}
     </Container >
   );
 };

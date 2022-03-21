@@ -9,6 +9,7 @@ exports[`Table Component should match snapshot and styles 1`] = `
     <select
       aria-label="Select File"
       class="form-select"
+      data-testid="select-files"
       style="margin-bottom: 30px;"
     >
       <option
@@ -17,27 +18,9 @@ exports[`Table Component should match snapshot and styles 1`] = `
         All files data
       </option>
     </select>
-    <table
-      class="table table-striped table-bordered table-hover"
-    >
-      <thead>
-        <tr>
-          <th>
-            FileName
-          </th>
-          <th>
-            Text
-          </th>
-          <th>
-            Number
-          </th>
-          <th>
-            Hex
-          </th>
-        </tr>
-      </thead>
-      <tbody />
-    </table>
+    <span>
+       Este archivo no tiene datos validos 
+    </span>
   </div>
 </DocumentFragment>
 `;
